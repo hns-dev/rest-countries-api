@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
+import Search from "./components/Search";
 
 function App() {
   // Define dark mode state and use the current value in the local storage as the initial vlaue
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <Header darkMode={darkMode} handleDarkModeChange={handleDarkModeChange} />
+      <Search />
     </div>
   );
 }
