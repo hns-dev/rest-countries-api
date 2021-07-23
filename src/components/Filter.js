@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Listbox } from "@headlessui/react";
 
 const regions = [
@@ -10,11 +11,13 @@ const regions = [
 ];
 
 const Filter = () => {
+  const [selectedRegion, setSelectedRegion] = useState(regions[0]);
+
   return (
-    <Listbox as="div">
+    <Listbox as="div" value={selectedRegion} onChange={setSelectedRegion}>
       <div>
         <Listbox.Button>
-          <span>Filter by region</span>
+          <span>{selectedRegion}</span>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +35,7 @@ const Filter = () => {
         </Listbox.Button>
         <Listbox.Options>
           {regions.map((region, index) => (
-            <Listbox.Option key={index}>
+            <Listbox.Option key={index} value={region}>
               {({ selected }) => <span>{region}</span>}
             </Listbox.Option>
           ))}
