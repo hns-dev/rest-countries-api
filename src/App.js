@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const darkModePrefrence = localStorage.getItem("darkMode");
+  const [darkMode, setDarkMode] = useState(JSON.parse(darkModePrefrence));
 
   useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+
     const html = document.querySelector("html");
     darkMode ? html.classList.add("dark") : html.classList.remove("dark");
   }, [darkMode]);
