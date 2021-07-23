@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Filter from "./components/Filter";
 import Header from "./components/Header";
 import Search from "./components/Search";
 
@@ -24,6 +25,7 @@ function App() {
     <div className="App">
       <Header darkMode={darkMode} handleDarkModeChange={handleDarkModeChange} />
       <Search />
+      <Filter />
     </div>
   );
 }
