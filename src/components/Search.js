@@ -21,7 +21,7 @@ const Search = () => {
           placeholder="Search for a country..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className="w-full bg-transparent placeholder-gray-dark dark:placeholder-white py-2 px-3 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-dark dark:focus:ring-white"
+          className="w-full bg-transparent font-semibold text-blue-dark dark:text-white placeholder-gray-dark dark:placeholder-white dark:placeholder-opacity-75 py-2 px-3 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-dark dark:focus:ring-white"
         />
       </div>
     </form>
