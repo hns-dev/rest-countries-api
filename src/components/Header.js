@@ -5,7 +5,9 @@ const Header = ({ darkMode, handleDarkModeChange }) => {
         <h1 className="font-bold md:font-extrabold text-lg">
           Where in the world?
         </h1>
+        {/* Update dark mode state whenever the user click the toggle button */}
         <button onClick={handleDarkModeChange} className="flex">
+          {/* Check the darkMode value and show the right icon */}
           {darkMode ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
