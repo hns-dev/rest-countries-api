@@ -19,8 +19,8 @@ const Home = () => {
   });
 
   return (
-    <main>
-      <section className="container my-8 md:flex justify-between">
+    <main className="container">
+      <section className=" my-8 md:flex justify-between">
         <Search />
         <Filter />
       </section>
