@@ -1,23 +1,16 @@
 import { useState } from "react";
 import { Listbox } from "@headlessui/react";
 
-const regions = [
-  "Filter by region",
-  "Africa",
-  "Americas",
-  "Asia",
-  "Europe",
-  "Oceania",
-];
+const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 const Filter = () => {
-  const [selectedRegion, setSelectedRegion] = useState(regions[0]);
+  const [selectedRegion, setSelectedRegion] = useState("");
 
   return (
     <Listbox as="div" value={selectedRegion} onChange={setSelectedRegion}>
       <div>
         <Listbox.Button>
-          <span>{selectedRegion}</span>
+          <span>{selectedRegion ? selectedRegion : "Filter by region"}</span>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
