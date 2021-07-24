@@ -37,8 +37,8 @@ const Filter = () => {
               className={({ active }) =>
                 `${
                   active
-                    ? "bg-gray-200 dark:bg-blue-dark bg-opacity-60 dark:bg-opacity-50 font-semibold"
-                    : ""
+                    ? "bg-gray-200 dark:bg-blue-dark bg-opacity-60 dark:bg-opacity-50 font-extrabold"
+                    : "font-semibold"
                 } cursor-default select-none rounded-md px-5 py-2`
               }
             >
@@ -46,7 +46,7 @@ const Filter = () => {
                 <span
                   className={`${
                     selected
-                      ? "font-semibold"
+                      ? "font-extrabold"
                       : "text-blue-light dark:text-gray-light"
                   } truncate`}
                 >
