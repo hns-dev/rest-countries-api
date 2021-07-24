@@ -24,8 +24,10 @@ function App() {
   return (
     <div className="App">
       <Header darkMode={darkMode} handleDarkModeChange={handleDarkModeChange} />
-      <Search />
-      <Filter />
+      <section className="container my-8 md:flex justify-between">
+        <Search />
+        <Filter />
+      </section>
     </div>
   );
 }
