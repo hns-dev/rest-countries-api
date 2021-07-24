@@ -20,7 +20,7 @@ const Home = () => {
 
   return (
     <main className="container">
-      <section className=" my-8 md:flex justify-between">
+      <section className="my-8 md:flex justify-between">
         <Search />
         <Filter />
       </section>
