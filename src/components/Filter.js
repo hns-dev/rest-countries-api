@@ -8,7 +8,7 @@ const Filter = () => {
 
   return (
     <Listbox as="div" value={selectedRegion} onChange={setSelectedRegion}>
-      <div className="my-2 w-full sm:w-60 lg:w-72 bg-transparent rounded-md shadow-sm font-medium">
+      <div className="w-full sm:w-60 lg:w-72 bg-transparent rounded-md shadow-sm font-medium">
         <Listbox.Button className="w-full flex justify-between items-center shadow-sm text-left bg-white dark:bg-blue-light rounded-md px-5 py-4 focus:outline-none focus:ring-1 focus:ring-gray-dark dark:focus:ring-white">
           <span className="font-medium truncate">
             {selectedRegion ? selectedRegion : "Filter by region"}
