@@ -8,13 +8,16 @@ const Filter = () => {
 
   return (
     <Listbox as="div" value={selectedRegion} onChange={setSelectedRegion}>
-      <div>
-        <Listbox.Button>
-          <span>{selectedRegion ? selectedRegion : "Filter by region"}</span>
-          <span>
+      <div className="my-2 w-full sm:w-60 lg:w-72 bg-transparent rounded-md shadow-sm font-medium">
+        <Listbox.Button className="w-full flex justify-between items-center shadow-sm text-left bg-white dark:bg-blue-light rounded-md px-5 py-4 focus:outline-none focus:ring-1 focus:ring-gray-dark dark:focus:ring-white">
+          <span className="font-medium truncate">
+            {selectedRegion ? selectedRegion : "Filter by region"}
+          </span>
+          <span className="pointer-events-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
+              className="h-5 w-5"
               fill="currentColor"
               aria-hidden="true"
             >
@@ -26,10 +29,28 @@ const Filter = () => {
             </svg>
           </span>
         </Listbox.Button>
-        <Listbox.Options>
+        <Listbox.Options className="bg-white dark:bg-blue-light shadow-sm rounded-md mt-1 p-1 focus:outline-none ">
           {regions.map((region, index) => (
-            <Listbox.Option key={index} value={region}>
-              {({ selected }) => <span>{region}</span>}
+            <Listbox.Option
+              key={index}
+              value={region}
+              className={({ active }) =>
+                `${
+                  active ? "bg-gray-light dark:bg-blue-dark font-semibold" : ""
+                } cursor-default select-none rounded-md px-5 py-2`
+              }
+            >
+              {({ selected }) => (
+                <span
+                  className={`${
+                    selected
+                      ? "font-semibold"
+                      : "text-blue-light dark:text-gray-light"
+                  } truncate`}
+                >
+                  {region}
+                </span>
+              )}
             </Listbox.Option>
           ))}
         </Listbox.Options>
