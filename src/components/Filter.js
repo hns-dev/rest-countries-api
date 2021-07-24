@@ -36,7 +36,9 @@ const Filter = () => {
               value={region}
               className={({ active }) =>
                 `${
-                  active ? "bg-gray-light dark:bg-blue-dark font-semibold" : ""
+                  active
+                    ? "bg-gray-200 dark:bg-blue-dark bg-opacity-60 dark:bg-opacity-50 font-semibold"
+                    : ""
                 } cursor-default select-none rounded-md px-5 py-2`
               }
             >
