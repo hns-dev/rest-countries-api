@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Search from "./Search";
 import Filter from "./Filter";
+import CountryList from "./CountryList";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -22,6 +23,10 @@ const Home = () => {
       <section className="container my-8 md:flex justify-between">
         <Search />
         <Filter />
+      </section>
+
+      <section>
+        <CountryList countries={countries} />
       </section>
     </main>
   );
