@@ -22,49 +22,57 @@ const CountryDetails = () => {
 
       {/* Country infos */}
       <div>
-        <h2>Country Name</h2>
+        <h2>{country.name}</h2>
 
         <div>
           <span>
-            native name: <span>dynamic value</span>
+            native name: <span>{country.nativeName}</span>
           </span>
           <br />
           <span>
-            population: <span>dynamic value</span>
+            population: <span>{country.population}</span>
           </span>
           <br />
           <span>
-            region: <span>dynamic value</span>
+            region: <span>{country.region}</span>
           </span>
           <br />
           <span>
-            sub region: <span>dynamic value</span>
+            sub region: <span>{country.subregion}</span>
           </span>
           <br />
           <span>
-            capital: <span>dynamic value</span>
+            capital: <span>{country.capital}</span>
           </span>
         </div>
 
         <div>
           <span>
-            top level domain: <span>dynamic value</span>
+            top level domain: <span>{country.topLevelDomain}</span>
           </span>
           <br />
           <span>
-            currencies: <span>dynamic value</span>
+            currencies:{" "}
+            {country.currencies ? (
+              country.currencies.map((currency) => (
+                <span key={currency.name}>{currency.name}</span>
+              ))
+            ) : (
+              <span>none</span>
+            )}
           </span>
           <br />
           <span>
-            languages: <span>dynamic value</span>
+            languages:{" "}
+            {country.languages ? (
+              country.languages.map((lang) => (
+                <span key={lang.name}>{lang.name}, </span>
+              ))
+            ) : (
+              <span>none</span>
+            )}
           </span>
           <br />
-        </div>
-
-        <div>
-          <span>
-            border countries: <span>dynamic value</span>
-          </span>
         </div>
       </div>
     </div>
