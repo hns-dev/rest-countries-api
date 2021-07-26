@@ -6,6 +6,7 @@ import CountryList from "./CountryList";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const url = "https://restcountries.eu/rest/v2/";
@@ -13,6 +14,7 @@ const Home = () => {
     const fetchCountries = async () => {
       const res = await axios(url);
       setCountries(res.data);
+      setIsLoading(false);
     };
 
     fetchCountries();
@@ -26,7 +28,7 @@ const Home = () => {
       </section>
 
       <section>
-        <CountryList countries={countries} />
+        <CountryList isLoading={isLoading} countries={countries} />
       </section>
     </main>
   );
