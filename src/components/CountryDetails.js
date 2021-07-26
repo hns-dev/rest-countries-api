@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CountryBorders from "./CountryBorders";
 
 const CountryDetails = () => {
   const name = "belgium";
@@ -73,6 +74,19 @@ const CountryDetails = () => {
             )}
           </span>
           <br />
+
+          <div>
+            <span>
+              border countries:{" "}
+              {country.borders ? (
+                country.borders.map((border) => (
+                  <CountryBorders key={border} border={border} />
+                ))
+              ) : (
+                <span>none</span>
+              )}
+            </span>
+          </div>
         </div>
       </div>
     </div>
