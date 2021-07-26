@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CountryDetails from "./components/CountryDetails";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -24,7 +25,8 @@ function App() {
   return (
     <div className="App">
       <Header darkMode={darkMode} handleDarkModeChange={handleDarkModeChange} />
-      <Home />
+      {/* <Home /> */}
+      <CountryDetails />
     </div>
   );
 }
