@@ -1,4 +1,18 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const CountryDetails = () => {
+  const name = "belgium";
+  const [country, setCountry] = useState([]);
+
+  useEffect(() => {
+    const fetchCountry = async () => {
+      const res = await axios(`https://restcountries.eu/rest/v2/name/${name}`);
+      setCountry(res.data[0]);
+    };
+    fetchCountry();
+  });
+
   const countryInfos = (
     <div>
       {/* Country flag */}
