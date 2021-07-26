@@ -18,7 +18,7 @@ const CountryDetails = () => {
     <div>
       {/* Country flag */}
       <div>
-        <img src="" alt="" />
+        <img src={country.flag} alt={`${country.name} flag`} />
       </div>
 
       {/* Country infos */}
