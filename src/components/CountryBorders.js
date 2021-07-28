@@ -10,7 +10,14 @@ const CountryBorders = ({ border }) => {
       .catch((err) => console.log(err));
   });
 
-  return <a href="/">{borderCountry}, </a>;
+  return (
+    <a
+      href="/"
+      className="bg-white dark:bg-blue-light shadow-md font-light inline-block mb-2 mr-2 px-5 rounded-sm"
+    >
+      {borderCountry}
+    </a>
+  );
 };
 
 export default CountryBorders;

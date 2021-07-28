@@ -90,8 +90,10 @@ const CountryDetails = () => {
 
         {/* info group 3 */}
         <div className="text-sm leading-8">
-          <span>
-            border countries:{" "}
+          <div>
+            <span className="block md:inline mb-2 md:mb-0 md:mr-2">
+              border countries:{" "}
+            </span>
             {country.borders ? (
               country.borders.map((border) => (
                 <CountryBorders key={border} border={border} />
@@ -99,7 +101,7 @@ const CountryDetails = () => {
             ) : (
               <span className="font-light">none</span>
             )}
-          </span>
+          </div>
         </div>
       </div>
     </div>
