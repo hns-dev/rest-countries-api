@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CountryDetails from "./components/CountryDetails";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
 
@@ -23,11 +23,24 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header darkMode={darkMode} handleDarkModeChange={handleDarkModeChange} />
-      {/* <Home /> */}
-      <CountryDetails />
-    </div>
+    <Router>
+      <div>
+        <Header
+          darkMode={darkMode}
+          handleDarkModeChange={handleDarkModeChange}
+        />
+
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+
+          <Route path="/countries/:name">
+            <CountryDetails />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

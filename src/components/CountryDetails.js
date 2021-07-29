@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router";
 import axios from "axios";
 import CountryBorders from "./CountryBorders";
 import CountryInfo from "./CountryInfo";
@@ -39,8 +40,9 @@ const secondaryInfos = [
 ];
 
 const CountryDetails = () => {
-  const name = "belgium";
+  const { name } = useParams();
   const [country, setCountry] = useState([]);
+  const history = useHistory();
 
   // Fetch specific country from the API and save it in the country state
   useEffect(() => {
@@ -110,7 +112,10 @@ const CountryDetails = () => {
     <main className="my-8 px-3 text-base">
       <div className="container">
         {/* Go back button */}
-        <button className="flex items-center bg-white dark:bg-blue-light shadow-md mb-10 px-5 py-2 rounded-sm">
+        <button
+          onClick={() => history.push("/")}
+          className="flex items-center bg-white dark:bg-blue-light shadow-md mb-10 px-5 py-2 rounded-sm"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="ionicon h-4 w-4 mr-3"

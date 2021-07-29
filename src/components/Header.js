@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Header = ({ darkMode, handleDarkModeChange }) => {
   return (
     <header className="bg-white text-blue-dark dark:bg-blue-light dark:text-white shadow-sm py-8">
       <div className="container flex justify-between items-center">
         <h1 className="font-bold md:font-extrabold text-lg">
-          Where in the world?
+          <Link to="/">Where in the world?</Link>
         </h1>
         {/* Update dark mode state whenever the user click the toggle button */}
         <button onClick={handleDarkModeChange} className="flex">

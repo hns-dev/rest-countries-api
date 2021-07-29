@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const CountryBorders = ({ border }) => {
@@ -11,12 +12,12 @@ const CountryBorders = ({ border }) => {
   });
 
   return (
-    <a
-      href="/"
+    <Link
+      to={`/countries/${borderCountry}`}
       className="bg-white dark:bg-blue-light shadow-md font-light inline-block mb-2 mr-2 px-5 rounded-sm"
     >
       {borderCountry}
-    </a>
+    </Link>
   );
 };
 
