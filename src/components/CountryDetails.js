@@ -1,6 +1,42 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CountryBorders from "./CountryBorders";
+import CountryInfo from "./CountryInfo";
+
+// const primaryInfos = [
+//   "native name",
+//   "population",
+//   "region",
+//   "sub region",
+//   "capital",
+// ];
+// const primaryInfos = {
+//   "native name": "nativeName",
+//   "population": "population",
+//   "region": "region",
+//   "sub region": "subregion",
+//   "capital": "capital"
+// };
+
+// const secondaryInfos = ["top level domain", "currencies", "languages"];
+
+/* x: the required info/info title
+  y: the name of the property in the country object
+  z: the property of the nested object, if any
+*/
+const primaryInfos = [
+  { x: "native name", y: "nativeName" },
+  { x: "population", y: "population" },
+  { x: "region", y: "region" },
+  { x: "sub region", y: "subregion" },
+  { x: "capital", y: "capital" },
+];
+
+const secondaryInfos = [
+  { x: "top level domain", y: "topLevelDomain", z: "" },
+  { x: "currencies", y: "currencies", z: "name" },
+  { x: "languages", y: "languages", z: "name" },
+];
 
 const CountryDetails = () => {
   const name = "belgium";
@@ -27,71 +63,34 @@ const CountryDetails = () => {
       </div>
 
       {/* Country infos */}
-      <div className="capitalize font-semibold self-center">
+      <div className="capitalize self-center">
         <h2 className="font-bold text-xl lg:text-2xl mb-4">{country.name}</h2>
 
         <div className="grid md:grid-cols-2 md:gap-6">
           {/* Info group 1 */}
           <div className="mb-8 text-sm leading-8">
-            <span className="block">
-              native name:{" "}
-              <span className="font-light">{country.nativeName}</span>
-            </span>
-            <span className="block">
-              population:{" "}
-              <span className="font-light">{country.population}</span>
-            </span>
-            <span className="block">
-              region: <span className="font-light">{country.region}</span>
-            </span>
-            <span className="block">
-              sub region:{" "}
-              <span className="font-light">{country.subregion}</span>
-            </span>
-            <span className="block">
-              capital: <span className="font-light">{country.capital}</span>
-            </span>
+            {primaryInfos.map((info, index) => (
+              <CountryInfo key={index} x={info.x} y={country[info.y]} />
+            ))}
           </div>
+
           {/* info group 2 */}
           <div className="mb-8 text-sm leading-8">
-            <span>
-              top level domain:{" "}
-              <span className="font-light">{country.topLevelDomain}</span>
-            </span>
-            <br />
-            <span>
-              currencies:{" "}
-              {country.currencies ? (
-                country.currencies.map((currency) => (
-                  <span key={currency.name} className="font-light">
-                    {currency.name}
-                  </span>
-                ))
-              ) : (
-                <span className="font-light">none</span>
-              )}
-            </span>
-            <br />
-            <span>
-              languages:{" "}
-              {country.languages ? (
-                country.languages.map((lang) => (
-                  <span key={lang.name} className="font-light">
-                    {lang.name},{" "}
-                  </span>
-                ))
-              ) : (
-                <span className="font-light">none</span>
-              )}
-            </span>
-            <br />
+            {secondaryInfos.map((info, index) => (
+              <CountryInfo
+                key={index}
+                x={info.x}
+                y={country[info.y]}
+                z={info.z}
+              />
+            ))}
           </div>
         </div>
 
         {/* info group 3 */}
         <div className="text-sm leading-8">
           <div>
-            <span className="block md:inline mb-2 md:mb-0 md:mr-2">
+            <span className="block md:inline mb-2 md:mb-0 md:mr-2 font-semibold">
               border countries:{" "}
             </span>
             {country.borders ? (
