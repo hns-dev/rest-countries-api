@@ -4,23 +4,6 @@ import axios from "axios";
 import CountryBorders from "./CountryBorders";
 import CountryInfo from "./CountryInfo";
 
-// const primaryInfos = [
-//   "native name",
-//   "population",
-//   "region",
-//   "sub region",
-//   "capital",
-// ];
-// const primaryInfos = {
-//   "native name": "nativeName",
-//   "population": "population",
-//   "region": "region",
-//   "sub region": "subregion",
-//   "capital": "capital"
-// };
-
-// const secondaryInfos = ["top level domain", "currencies", "languages"];
-
 /* x: the required info/info title
   y: the name of the property in the country object
   z: the property of the nested object, if any
