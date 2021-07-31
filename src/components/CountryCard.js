@@ -1,4 +1,11 @@
 import { Link } from "react-router-dom";
+import CountryInfo from "./CountryInfo";
+
+const primaryInfos = [
+  { x: "population", y: "population" },
+  { x: "region", y: "region" },
+  { x: "capital", y: "capital" },
+];
 
 const CountryCard = ({ country }) => {
   return (
@@ -13,22 +20,13 @@ const CountryCard = ({ country }) => {
           />
         </div>
         {/* Contry infos container */}
-        <div className="px-6 py-8 capitalize font-semibold leading-6">
+        <div className="px-6 py-8 capitalize leading-6">
           <span className="mb-4 font-extrabold text-lg inline-block">
             {country.name}
           </span>
-          <div>
-            <span>population: </span>
-            <span className="font-light">{country.population}</span>
-          </div>
-          <div>
-            <span>region: </span>
-            <span className="font-light">{country.region}</span>
-          </div>
-          <div>
-            <span>capital: </span>
-            <span className="font-light">{country.capital}</span>
-          </div>
+          {primaryInfos.map((info, index) => (
+            <CountryInfo key={index} x={info.x} y={country[info.y]} />
+          ))}
         </div>
       </Link>
     </li>
