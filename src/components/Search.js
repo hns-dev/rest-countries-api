@@ -1,7 +1,12 @@
 import { useState } from "react";
 
-const Search = () => {
+const Search = ({ getQuery }) => {
   const [searchText, setSearchText] = useState("");
+
+  const handleInputChange = (val) => {
+    setSearchText(val);
+    getQuery(`name/${val}`);
+  };
 
   return (
     <form className="mb-12 md:mb-0">
@@ -20,7 +25,7 @@ const Search = () => {
           type="text"
           placeholder="Search for a country..."
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={(e) => handleInputChange(e.target.value)}
           className="w-full bg-transparent font-semibold text-blue-dark dark:text-white placeholder-gray-dark dark:placeholder-white dark:placeholder-opacity-75 py-2 px-3 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-dark dark:ring-white"
         />
       </div>
