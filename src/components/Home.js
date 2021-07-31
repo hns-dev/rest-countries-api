@@ -25,7 +25,7 @@ const Home = () => {
     <main className="container">
       <section className="my-8 md:flex justify-between">
         <Search getQuery={(q) => setQuery(q)} />
-        <Filter />
+        <Filter getQuery={(q) => setQuery(q)} />
       </section>
 
       <section>

@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Listbox } from "@headlessui/react";
 
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
-const Filter = () => {
+const Filter = ({ getQuery }) => {
   const [selectedRegion, setSelectedRegion] = useState("");
+
+  useEffect(() => {
+    if (selectedRegion) {
+      getQuery(`region/${selectedRegion}`);
+    }
+  }, [selectedRegion]);
 
   return (
     <Listbox value={selectedRegion} onChange={setSelectedRegion}>
