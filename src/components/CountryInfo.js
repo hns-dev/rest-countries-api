@@ -1,4 +1,8 @@
 const CountryInfo = ({ x, y, z }) => {
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat().format(number);
+  };
+
   const res = Array.isArray(y) ? (
     <div>
       <span className="font-semibold">{x}: </span>
@@ -17,7 +21,7 @@ const CountryInfo = ({ x, y, z }) => {
   ) : (
     <div>
       <span className="font-semibold">{x}: </span>
-      {y}
+      {typeof y === "number" ? formatNumber(y) : y}
     </div>
   );
 
