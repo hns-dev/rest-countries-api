@@ -96,7 +96,7 @@ const CountryDetails = () => {
       <div className="container">
         {/* Go back button */}
         <button
-          onClick={() => history.push("/")}
+          onClick={() => history.goBack()}
           className="flex items-center bg-white dark:bg-blue-light shadow-md mb-10 px-5 py-2 rounded-sm"
         >
           <svg
