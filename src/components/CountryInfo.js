@@ -3,20 +3,16 @@ const CountryInfo = ({ x, y, z }) => {
     return new Intl.NumberFormat().format(number);
   };
 
+  const formatListItems = () => {
+    return z
+      ? y.map((item) => item.name).join(", ")
+      : y.map((item) => item).join(", ");
+  };
+
   const res = Array.isArray(y) ? (
     <div>
       <span className="font-semibold">{x}: </span>
-      {y.map((item) => {
-        return z ? (
-          <span key={item.name} className="font-light">
-            {item.name},{" "}
-          </span>
-        ) : (
-          <span key={item} className="font-light">
-            {item}
-          </span>
-        );
-      })}
+      {formatListItems()}
     </div>
   ) : (
     <div>
