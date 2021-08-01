@@ -78,7 +78,7 @@ const CountryDetails = () => {
             <span className="block md:inline mb-2 md:mb-0 md:mr-2 font-semibold">
               border countries:{" "}
             </span>
-            {country.borders ? (
+            {country.borders && country.borders.length ? (
               country.borders.map((border) => (
                 <CountryBorders key={border} border={border} />
               ))

@@ -12,12 +12,12 @@ const CountryInfo = ({ x, y, z }) => {
   const res = Array.isArray(y) ? (
     <div>
       <span className="font-semibold">{x}: </span>
-      {formatListItems()}
+      {formatListItems() || "none"}
     </div>
   ) : (
     <div>
       <span className="font-semibold">{x}: </span>
-      {typeof y === "number" ? formatNumber(y) : y}
+      {typeof y === "number" ? formatNumber(y) : y || "none"}
     </div>
   );
 
