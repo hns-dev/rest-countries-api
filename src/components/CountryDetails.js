@@ -24,33 +24,8 @@ const secondaryInfos = [
 
 const CountryDetails = ({ countries, isLoading }) => {
   const { name } = useParams();
-  // const [country, setCountry] = useState([]);
-  const history = useHistory();
   const country = countries.find((country) => country.name === name);
-
-  // // Fetch specific country from the API and save it in the country state
-  // useEffect(() => {
-  //   const CancelToken = axios.CancelToken;
-  //   const source = CancelToken.source();
-
-  //   const fetchCountry = () => {
-  //     axios(`https://restcountries.eu/rest/v2/name/${name}`, {
-  //       cancelToken: source.token,
-  //     })
-  //       .then((res) => {
-  //         setCountry(res.data[0]);
-  //       })
-  //       .catch((err) => {
-  //         if (axios.isCancel(err)) return;
-  //         else return console.log(err);
-  //       });
-  //   };
-  //   fetchCountry();
-
-  //   return () => {
-  //     source.cancel();
-  //   };
-  // });
+  const history = useHistory();
 
   const countryInfos = country ? (
     <div className="grid lg:grid-cols-2 lg:gap-32">
@@ -95,8 +70,12 @@ const CountryDetails = ({ countries, isLoading }) => {
               border countries:{" "}
             </span>
             {country.borders && country.borders.length ? (
-              country.borders.map((border) => (
-                <CountryBorders key={border} border={border} />
+              country.borders.map((alphacode) => (
+                <CountryBorders
+                  key={alphacode}
+                  alphacode={alphacode}
+                  countries={countries}
+                />
               ))
             ) : (
               <span className="font-light">none</span>
