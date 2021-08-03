@@ -29,11 +29,26 @@ const CountryDetails = () => {
 
   // Fetch specific country from the API and save it in the country state
   useEffect(() => {
-    const fetchCountry = async () => {
-      const res = await axios(`https://restcountries.eu/rest/v2/name/${name}`);
-      setCountry(res.data[0]);
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    const fetchCountry = () => {
+      axios(`https://restcountries.eu/rest/v2/name/${name}`, {
+        cancelToken: source.token,
+      })
+        .then((res) => {
+          setCountry(res.data[0]);
+        })
+        .catch((err) => {
+          if (axios.isCancel(err)) return;
+          else return console.log(err);
+        });
     };
     fetchCountry();
+
+    return () => {
+      source.cancel();
+    };
   });
 
   const countryInfos = (

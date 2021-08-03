@@ -6,9 +6,21 @@ const CountryBorders = ({ border }) => {
   const [borderCountry, setBorderCountry] = useState("");
 
   useEffect(() => {
-    axios(`https://restcountries.eu/rest/v2/alpha/${border}?fields=name`)
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    axios(`https://restcountries.eu/rest/v2/alpha/${border}?fields=name`, {
+      cancelToken: source.token,
+    })
       .then((result) => setBorderCountry(result.data.name))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (axios.isCancel(err)) return;
+        else return console.log(err);
+      });
+
+    return () => {
+      source.cancel();
+    };
   });
 
   return (

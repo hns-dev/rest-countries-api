@@ -10,14 +10,26 @@ const Home = () => {
 
   useEffect(() => {
     const url = "https://restcountries.eu/rest/v2/";
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
 
-    const fetchCountries = async () => {
-      const res = await axios(url);
-      setCountries(res.data);
-      setIsLoading(false);
+    const fetchCountries = () => {
+      axios(url, { cancelToken: source.token })
+        .then((res) => {
+          setCountries(res.data);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          if (axios.isCancel(err)) return;
+          else return console.log(err);
+        });
     };
 
     fetchCountries();
+
+    return () => {
+      source.cancel();
+    };
   });
 
   return (
