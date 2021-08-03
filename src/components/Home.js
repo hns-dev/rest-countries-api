@@ -1,37 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import Search from "./Search";
 import Filter from "./Filter";
 import CountryList from "./CountryList";
 
-const Home = () => {
-  const [countries, setCountries] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const url = "https://restcountries.eu/rest/v2/";
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
-    const fetchCountries = () => {
-      axios(url, { cancelToken: source.token })
-        .then((res) => {
-          setCountries(res.data);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          if (axios.isCancel(err)) return;
-          else return console.log(err);
-        });
-    };
-
-    fetchCountries();
-
-    return () => {
-      source.cancel();
-    };
-  });
-
+const Home = ({ countries, isLoading }) => {
   return (
     <main className="container">
       <section className="my-8 md:flex justify-between">
@@ -40,7 +11,7 @@ const Home = () => {
       </section>
 
       <section>
-        <CountryList isLoading={isLoading} countries={countries} />
+        <CountryList countries={countries} isLoading={isLoading} />
       </section>
     </main>
   );
