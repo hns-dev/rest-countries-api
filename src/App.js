@@ -64,7 +64,7 @@ function App() {
           </Route>
 
           <Route path="/countries/:name">
-            <CountryDetails />
+            <CountryDetails countries={countries} isLoading={isLoading} />
           </Route>
         </Switch>
       </div>

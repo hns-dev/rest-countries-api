@@ -22,36 +22,37 @@ const secondaryInfos = [
   { x: "languages", y: "languages", z: "name" },
 ];
 
-const CountryDetails = () => {
+const CountryDetails = ({ countries, isLoading }) => {
   const { name } = useParams();
-  const [country, setCountry] = useState([]);
+  // const [country, setCountry] = useState([]);
   const history = useHistory();
+  const country = countries.find((country) => country.name === name);
 
-  // Fetch specific country from the API and save it in the country state
-  useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
+  // // Fetch specific country from the API and save it in the country state
+  // useEffect(() => {
+  //   const CancelToken = axios.CancelToken;
+  //   const source = CancelToken.source();
 
-    const fetchCountry = () => {
-      axios(`https://restcountries.eu/rest/v2/name/${name}`, {
-        cancelToken: source.token,
-      })
-        .then((res) => {
-          setCountry(res.data[0]);
-        })
-        .catch((err) => {
-          if (axios.isCancel(err)) return;
-          else return console.log(err);
-        });
-    };
-    fetchCountry();
+  //   const fetchCountry = () => {
+  //     axios(`https://restcountries.eu/rest/v2/name/${name}`, {
+  //       cancelToken: source.token,
+  //     })
+  //       .then((res) => {
+  //         setCountry(res.data[0]);
+  //       })
+  //       .catch((err) => {
+  //         if (axios.isCancel(err)) return;
+  //         else return console.log(err);
+  //       });
+  //   };
+  //   fetchCountry();
 
-    return () => {
-      source.cancel();
-    };
-  });
+  //   return () => {
+  //     source.cancel();
+  //   };
+  // });
 
-  const countryInfos = (
+  const countryInfos = country ? (
     <div className="grid lg:grid-cols-2 lg:gap-32">
       {/* Country flag */}
       <div className="mb-10 lg:mb-0">
@@ -104,8 +105,9 @@ const CountryDetails = () => {
         </div>
       </div>
     </div>
+  ) : (
+    "No infos"
   );
-
   return (
     <main className="my-8 px-3 text-base">
       <div className="container">
