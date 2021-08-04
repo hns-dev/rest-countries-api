@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
-const Filter = () => {
+const Filter = ({ getQuery }) => {
   const [selectedRegion, setSelectedRegion] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,6 +15,7 @@ const Filter = () => {
   const handleOptionChange = (value) => {
     setSelectedRegion(value);
     setIsOpen(false);
+    getQuery(`region/${value}`);
   };
 
   return (

@@ -25,9 +25,10 @@ function App() {
 
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [query, setQuery] = useState("all");
 
   useEffect(() => {
-    const url = "https://restcountries.eu/rest/v2/";
+    const url = `https://restcountries.eu/rest/v2/${query}`;
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
 
@@ -48,7 +49,7 @@ function App() {
     return () => {
       source.cancel();
     };
-  }, []);
+  }, [query]);
 
   return (
     <Router>
@@ -60,7 +61,11 @@ function App() {
 
         <Switch>
           <Route exact path="/">
-            <Home countries={countries} isLoading={isLoading} />
+            <Home
+              countries={countries}
+              isLoading={isLoading}
+              getQuery={(q) => setQuery(q)}
+            />
           </Route>
 
           <Route path="/countries/:name">
