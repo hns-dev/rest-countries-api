@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import axios from "axios";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import CountryDetails from "./components/CountryDetails";
@@ -23,34 +22,6 @@ function App() {
     setDarkMode(!darkMode);
   };
 
-  const [countries, setCountries] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [query, setQuery] = useState("all");
-
-  useEffect(() => {
-    const url = `https://restcountries.eu/rest/v2/${query}`;
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
-    const fetchCountries = () => {
-      axios(url, { cancelToken: source.token })
-        .then((res) => {
-          setCountries(res.data);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          if (axios.isCancel(err)) return;
-          else return console.log(err);
-        });
-    };
-
-    fetchCountries();
-
-    return () => {
-      source.cancel();
-    };
-  }, [query]);
-
   return (
     <Router>
       <div>
@@ -61,15 +32,11 @@ function App() {
 
         <Switch>
           <Route exact path="/">
-            <Home
-              countries={countries}
-              isLoading={isLoading}
-              getQuery={(q) => setQuery(q)}
-            />
+            <Home />
           </Route>
 
           <Route path="/countries/:name">
-            <CountryDetails countries={countries} isLoading={isLoading} />
+            <CountryDetails />
           </Route>
         </Switch>
       </div>
