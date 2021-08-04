@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router";
 import axios from "axios";
 import CountryBorders from "./CountryBorders";
 import CountryInfo from "./CountryInfo";
+import Loader from "./Loader";
 
 /* x: the required info/info title
   y: the name of the property in the country object
@@ -25,6 +26,7 @@ const secondaryInfos = [
 const CountryDetails = () => {
   const { name } = useParams();
   const [country, setCountry] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
 
   // Fetch specific country from the API and save it in the country state
@@ -36,7 +38,10 @@ const CountryDetails = () => {
       axios(`https://restcountries.eu/rest/v2/name/${name}`, {
         cancelToken: source.token,
       })
-        .then((res) => setCountry(res.data[0]))
+        .then((res) => {
+          setCountry(res.data[0]);
+          setIsLoading(false);
+        })
         .catch((err) => {
           if (axios.isCancel(err)) return;
           else return console.log(err);
@@ -131,7 +136,7 @@ const CountryDetails = () => {
           <span className="capitalize text-sm">back</span>
         </button>
 
-        {countryInfos}
+        {isLoading ? <Loader /> : countryInfos}
       </div>
     </main>
   );
