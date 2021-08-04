@@ -22,10 +22,32 @@ const secondaryInfos = [
   { x: "languages", y: "languages", z: "name" },
 ];
 
-const CountryDetails = ({ countries, isLoading }) => {
+const CountryDetails = () => {
   const { name } = useParams();
-  const country = countries.find((country) => country.name === name);
+  const [country, setCountry] = useState(null);
   const history = useHistory();
+
+  // Fetch specific country from the API and save it in the country state
+  useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    const fetchCountry = () => {
+      axios(`https://restcountries.eu/rest/v2/name/${name}`, {
+        cancelToken: source.token,
+      })
+        .then((res) => setCountry(res.data[0]))
+        .catch((err) => {
+          if (axios.isCancel(err)) return;
+          else return console.log(err);
+        });
+    };
+    fetchCountry();
+
+    return () => {
+      source.cancel();
+    };
+  });
 
   const countryInfos = country ? (
     <div className="grid lg:grid-cols-2 lg:gap-32">
@@ -71,11 +93,7 @@ const CountryDetails = ({ countries, isLoading }) => {
             </span>
             {country.borders && country.borders.length ? (
               country.borders.map((alphacode) => (
-                <CountryBorders
-                  key={alphacode}
-                  alphacode={alphacode}
-                  countries={countries}
-                />
+                <CountryBorders key={alphacode} alphacode={alphacode} />
               ))
             ) : (
               <span className="font-light">none</span>
