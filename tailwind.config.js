@@ -22,7 +22,7 @@ module.exports = {
           darker: "hsl(200, 15%, 8%)",
         },
         gray: {
-          light: "hsl(0, 0%, 98%)",
+          light: "hsl(0, 0%, 97%)",
           dark: "hsl(0, 0%, 52%)",
         },
         white: "hsl(0, 0%, 100%)",
