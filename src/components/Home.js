@@ -7,6 +7,7 @@ import CountryList from "./CountryList";
 const Home = () => {
   const [countries, setCountries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [query, setQuery] = useState("all");
 
   useEffect(() => {
@@ -19,10 +20,11 @@ const Home = () => {
         .then((res) => {
           setCountries(res.data);
           setIsLoading(false);
+          setError(null);
         })
         .catch((err) => {
           if (axios.isCancel(err)) return;
-          else return console.log(err);
+          else setError(err);
         });
     };
 
@@ -40,7 +42,11 @@ const Home = () => {
       </section>
 
       <section>
-        <CountryList countries={countries} isLoading={isLoading} />
+        <CountryList
+          countries={countries}
+          isLoading={isLoading}
+          error={error}
+        />
       </section>
     </main>
   );
