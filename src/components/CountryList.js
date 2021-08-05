@@ -1,7 +1,8 @@
 import CountryCard from "./CountryCard";
 import Loader from "./Loader";
+import NoCountry from "./NoCountry";
 
-const CountryList = ({ isLoading, countries }) => {
+const CountryList = ({ countries, isLoading, error }) => {
   // When the fetching the data from API is done, loop through the countries and return a list item from CountryCard component
   const countryList = isLoading ? (
     <Loader />
@@ -15,7 +16,10 @@ const CountryList = ({ isLoading, countries }) => {
 
   return (
     // Display country list
-    <>{countryList}</>
+    <>
+      {error && <NoCountry />}
+      {countryList}
+    </>
   );
 };
 
