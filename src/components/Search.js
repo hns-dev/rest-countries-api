@@ -3,9 +3,11 @@ import { useState } from "react";
 const Search = ({ getQuery }) => {
   const [searchText, setSearchText] = useState("");
 
-  const handleInputChange = (val) => {
-    setSearchText(val);
-    getQuery(`name/${val}`);
+  const handleInputChange = (value) => {
+    setSearchText(value);
+    if (value) {
+      getQuery(`name/${value}`);
+    }
   };
 
   return (
