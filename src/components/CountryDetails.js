@@ -55,13 +55,13 @@ const CountryDetails = () => {
   });
 
   const countryInfos = country ? (
-    <div className="grid lg:grid-cols-2 lg:gap-24">
+    <div className="grid xl:grid-cols-2 xl:gap-24 lg:mt-16">
       {/* Country flag */}
-      <div className="mb-10 lg:mb-0">
+      <div className="mb-10 xl:mb-0">
         <img
           src={country.flag}
           alt={`${country.name} flag`}
-          className="w-full max-h-72 sm:max-h-80 md:max-h-96 lg:max-h-full"
+          className="w-full max-h-72 sm:max-h-80 md:max-h-96 xl:max-h-full"
         />
       </div>
 
@@ -69,7 +69,7 @@ const CountryDetails = () => {
       <div className="capitalize self-center">
         <h2 className="font-bold text-xl lg:text-2xl mb-4">{country.name}</h2>
 
-        <div className="grid md:grid-cols-2 md:gap-6">
+        <div className="grid xl:grid-cols-2 xl:gap-6">
           {/* Info group 1 */}
           <div className="mb-8 text-sm leading-8">
             {primaryInfos.map((info, index) => (
