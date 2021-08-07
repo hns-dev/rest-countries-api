@@ -57,11 +57,11 @@ const CountryDetails = () => {
   const countryInfos = country ? (
     <div className="grid xl:grid-cols-2 xl:gap-24 lg:mt-16">
       {/* Country flag */}
-      <div className="mb-10 xl:mb-0">
+      <div className="relative pb-3/5 xl:pb-10/12 mb-10 xl:mb-0">
         <img
           src={country.flag}
           alt={`${country.name} flag`}
-          className="w-full max-h-72 sm:max-h-80 md:max-h-96 xl:max-h-full"
+          className="absolute h-full w-full object-cover"
         />
       </div>
 
