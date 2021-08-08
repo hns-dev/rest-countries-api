@@ -46,7 +46,7 @@ const Filter = ({ getQuery }) => {
 
       {/* Options container */}
       {isOpen && (
-        <ul className="absolute w-full bg-white dark:bg-blue-light shadow-md rounded-md mt-2 p-1 focus:outline-none">
+        <ul className="absolute z-10 w-full bg-white dark:bg-blue-light shadow-md rounded-md mt-2 p-1 focus:outline-none">
           {regions.map((region) => (
             <li
               key={region}
