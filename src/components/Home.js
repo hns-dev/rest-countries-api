@@ -1,39 +1,17 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import Search from "./Search";
 import Filter from "./Filter";
 import CountryList from "./CountryList";
+import useFetch from "../hooks/useFetch";
 
 const Home = () => {
-  const [countries, setCountries] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [query, setQuery] = useState("all");
+  const {
+    data: countries,
+    isLoading,
+    error,
+  } = useFetch(`https://restcountries.eu/rest/v2/${query}`);
 
-  useEffect(() => {
-    const url = `https://restcountries.eu/rest/v2/${query}`;
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
-
-    const fetchCountries = () => {
-      axios(url, { cancelToken: source.token })
-        .then((res) => {
-          setCountries(res.data);
-          setIsLoading(false);
-          setError(null);
-        })
-        .catch((err) => {
-          if (axios.isCancel(err)) return;
-          else setError(err);
-        });
-    };
-
-    fetchCountries();
-
-    return () => {
-      source.cancel();
-    };
-  }, [query]);
   return (
     <main className="container">
       <section className="my-8 md:flex justify-between">
@@ -42,11 +20,13 @@ const Home = () => {
       </section>
 
       <section>
-        <CountryList
-          countries={countries}
-          isLoading={isLoading}
-          error={error}
-        />
+        {countries && (
+          <CountryList
+            countries={countries}
+            isLoading={isLoading}
+            error={error}
+          />
+        )}
       </section>
     </main>
   );

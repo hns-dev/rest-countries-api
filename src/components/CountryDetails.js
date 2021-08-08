@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router";
-import axios from "axios";
 import CountryBorders from "./CountryBorders";
 import CountryInfo from "./CountryInfo";
 import Loader from "./Loader";
+import useFetch from "../hooks/useFetch";
 
 /* x: the required info/info title
   y: the name of the property in the country object
@@ -25,91 +24,75 @@ const secondaryInfos = [
 
 const CountryDetails = () => {
   const { name } = useParams();
-  const [country, setCountry] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
 
-  // Fetch specific country from the API and save it in the country state
-  useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
+  const {
+    data: country,
+    isLoading,
+    error,
+  } = useFetch(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`);
 
-    const fetchCountry = () => {
-      axios(`https://restcountries.eu/rest/v2/name/${name}`, {
-        cancelToken: source.token,
-      })
-        .then((res) => {
-          setCountry(res.data[0]);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          if (axios.isCancel(err)) return;
-          else return console.log(err);
-        });
-    };
-    fetchCountry();
-
-    return () => {
-      source.cancel();
-    };
-  }, [name]);
-
-  const countryInfos = country ? (
-    <div className="grid xl:grid-cols-2 xl:gap-24 lg:mt-16">
-      {/* Country flag */}
-      <div className="relative pb-3/5 xl:pb-10/12 mb-10 xl:mb-0">
-        <img
-          src={country.flag}
-          alt={`${country.name} flag`}
-          className="absolute h-full w-full object-cover"
-        />
-      </div>
-
-      {/* Country infos */}
-      <div className="capitalize self-center">
-        <h2 className="font-bold text-xl lg:text-2xl mb-4">{country.name}</h2>
-
-        <div className="grid xl:grid-cols-2 xl:gap-6">
-          {/* Info group 1 */}
-          <div className="mb-8 text-sm leading-8">
-            {primaryInfos.map((info, index) => (
-              <CountryInfo key={index} x={info.x} y={country[info.y]} />
-            ))}
+  const countryInfos = country
+    ? country.map((country) => (
+        <div
+          key={country.name}
+          className="grid xl:grid-cols-2 xl:gap-24 lg:mt-16"
+        >
+          {/* Country flag */}
+          <div className="relative pb-3/5 xl:pb-10/12 mb-10 xl:mb-0">
+            <img
+              src={country.flag}
+              alt={`${country.name} flag`}
+              className="absolute h-full w-full object-cover"
+            />
           </div>
 
-          {/* info group 2 */}
-          <div className="mb-8 text-sm leading-8">
-            {secondaryInfos.map((info, index) => (
-              <CountryInfo
-                key={index}
-                x={info.x}
-                y={country[info.y]}
-                z={info.z}
-              />
-            ))}
-          </div>
-        </div>
+          {/* Country infos */}
+          <div className="capitalize self-center">
+            <h2 className="font-bold text-xl lg:text-2xl mb-4">
+              {country.name}
+            </h2>
 
-        {/* info group 3 */}
-        <div className="text-sm leading-8">
-          <div>
-            <span className="block md:inline mb-2 md:mb-0 md:mr-2 font-semibold">
-              border countries:{" "}
-            </span>
-            {country.borders && country.borders.length ? (
-              country.borders.map((alphacode) => (
-                <CountryBorders key={alphacode} alphacode={alphacode} />
-              ))
-            ) : (
-              <span className="font-light">none</span>
-            )}
+            <div className="grid xl:grid-cols-2 xl:gap-6">
+              {/* Info group 1 */}
+              <div className="mb-8 text-sm leading-8">
+                {primaryInfos.map((info, index) => (
+                  <CountryInfo key={index} x={info.x} y={country[info.y]} />
+                ))}
+              </div>
+
+              {/* info group 2 */}
+              <div className="mb-8 text-sm leading-8">
+                {secondaryInfos.map((info, index) => (
+                  <CountryInfo
+                    key={index}
+                    x={info.x}
+                    y={country[info.y]}
+                    z={info.z}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* info group 3 */}
+            <div className="text-sm leading-8">
+              <div>
+                <span className="block md:inline mb-2 md:mb-0 md:mr-2 font-semibold">
+                  border countries:{" "}
+                </span>
+                {country.borders && country.borders.length ? (
+                  country.borders.map((alphacode) => (
+                    <CountryBorders key={alphacode} alphacode={alphacode} />
+                  ))
+                ) : (
+                  <span className="font-light">none</span>
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  ) : (
-    "No infos"
-  );
+      ))
+    : "No infos";
   return (
     <main className="my-8 px-3 text-base">
       <div className="container">
