@@ -16,10 +16,7 @@ const CountryList = ({ countries, isLoading, error }) => {
 
   return (
     // Display country list
-    <>
-      {error && <NoCountry />}
-      {countryList}
-    </>
+    <>{error ? <NoCountry /> : countryList}</>
   );
 };
 
