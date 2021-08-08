@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useClickOutside from "../hooks/useClickOutside";
 
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
@@ -18,9 +19,17 @@ const Filter = ({ getQuery }) => {
     getQuery(`region/${value}`);
   };
 
+  // Close select menu when a user click outside it
+  const domNode = useClickOutside(() => {
+    setIsOpen(false);
+  });
+
   return (
     // Select menu container
-    <div className="relative w-48 sm:w-60 lg:w-72 bg-transparent rounded-md shadow-sm font-medium">
+    <div
+      ref={domNode}
+      className="relative w-48 sm:w-60 lg:w-72 bg-transparent rounded-md shadow-sm font-medium"
+    >
       {/* select menu button */}
       <button
         onClick={handleOpenChange}
