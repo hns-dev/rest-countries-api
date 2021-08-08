@@ -52,7 +52,7 @@ const CountryDetails = () => {
     return () => {
       source.cancel();
     };
-  });
+  }, [name]);
 
   const countryInfos = country ? (
     <div className="grid xl:grid-cols-2 xl:gap-24 lg:mt-16">
