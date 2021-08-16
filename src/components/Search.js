@@ -11,7 +11,7 @@ const Search = ({ getQuery }) => {
   };
 
   return (
-    <form className="mb-12 md:mb-0">
+    <form onSubmit={(e) => e.preventDefault()} className="mb-12 md:mb-0">
       <div className="w-full md:w-96 flex items-center bg-white text-gray-dark dark:bg-blue-light dark:text-white shadow-sm rounded-md px-6 py-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
