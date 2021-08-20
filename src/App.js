@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Home from "./components/Home";
-import CountryDetails from "./components/CountryDetails";
+import Loader from "./components/Loader";
+
+const Home = lazy(() => import("./components/Home"));
+const CountryDetails = lazy(() => import("./components/CountryDetails"));
 
 function App() {
   // Define dark mode state and use the current value in the local storage as the initial vlaue
@@ -30,15 +32,17 @@ function App() {
           handleDarkModeChange={handleDarkModeChange}
         />
 
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+        <Suspense fallback={<Loader />}>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
 
-          <Route path="/countries/:name">
-            <CountryDetails />
-          </Route>
-        </Switch>
+            <Route path="/countries/:name">
+              <CountryDetails />
+            </Route>
+          </Switch>
+        </Suspense>
       </div>
     </Router>
   );
