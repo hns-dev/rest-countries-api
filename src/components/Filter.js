@@ -16,7 +16,7 @@ const Filter = ({ getQuery }) => {
   const handleOptionChange = (value) => {
     setSelectedRegion(value);
     setIsOpen(false);
-    getQuery(`region/${value}`);
+    getQuery(`continent/${value}`);
   };
 
   // Close select menu when a user click outside it
