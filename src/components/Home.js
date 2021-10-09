@@ -10,7 +10,7 @@ const Home = () => {
     data: countries,
     isLoading,
     error,
-  } = useFetch(`https://restcountries.eu/rest/v2/${query}`);
+  } = useFetch(`https://restcountries.com/v2/${query}`);
 
   return (
     <main className="container">
