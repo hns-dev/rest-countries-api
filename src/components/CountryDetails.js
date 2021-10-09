@@ -30,7 +30,7 @@ const CountryDetails = () => {
     data: country,
     isLoading,
     error,
-  } = useFetch(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`);
+  } = useFetch(`https://restcountries.com/v2/name/${name}?fullText=true`);
 
   const countryInfos = country
     ? country.map((country) => (
