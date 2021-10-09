@@ -53,13 +53,13 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
+- [Tailwindcss](https://tailwindcss.com/) - For styles
+- axios - For HTTP request
+- [react-render-if-visible](https://github.com/NightCafeStudio/react-render-if-visible) - To render large list
 
 **Note: These are just examples. Delete this note and replace the list above with your own choices**
 
