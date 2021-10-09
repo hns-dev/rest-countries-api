@@ -14,19 +14,12 @@ const CountryCard = ({ country }) => {
         {/* Flag img container */}
         <div className="relative pb-3/5">
           <img
-            src={country.flag}
+            src={country.flags["png"]}
             alt={`${country.name} flag`}
             className="absolute h-full w-full object-cover"
           />
         </div>
 
-        {/* <div className="h-48">
-          <img
-            src={country.flag}
-            alt={`${country.name} flag`}
-            className="w-full h-full object-cover"
-          />
-        </div> */}
         {/* Contry infos container */}
         <div className="px-6 py-8 capitalize leading-6">
           <span className="mb-4 font-extrabold text-lg inline-block">
