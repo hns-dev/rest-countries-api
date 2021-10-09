@@ -6,9 +6,7 @@ const CountryBorders = ({ alphacode }) => {
     data: countryName,
     isLoading,
     error,
-  } = useFetch(
-    `https://restcountries.eu/rest/v2/alpha/${alphacode}/?fields=name`
-  );
+  } = useFetch(`https://restcountries.com/v2/alpha/${alphacode}/?fields=name`);
 
   return (
     countryName && (
