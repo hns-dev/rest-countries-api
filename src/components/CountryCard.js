@@ -9,7 +9,7 @@ const primaryInfos = [
 
 const CountryCard = ({ country }) => {
   return (
-    <li className="bg-white dark:bg-blue-light shadow-md rounded-md overflow-hidden">
+    <li className="bg-white dark:bg-blue-light shadow-md rounded-md overflow-hidden h-96">
       <Link to={`/countries/${country.name}`}>
         {/* Flag img container */}
         <div className="relative pb-3/5">
