@@ -14,7 +14,7 @@ const CountryCard = ({ country }) => {
         {/* Flag img container */}
         <div className="relative pb-3/5">
           <img
-            src={country.flags["png"]}
+            src={country.flags["svg"]}
             alt={`${country.name} flag`}
             className="absolute h-full w-full object-cover"
           />

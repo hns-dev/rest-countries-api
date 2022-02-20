@@ -41,7 +41,7 @@ const CountryDetails = () => {
           {/* Country flag */}
           <div className="relative pb-3/5 xl:pb-10/12 mb-10 xl:mb-0">
             <img
-              src={country.flags["png"]}
+              src={country.flags["svg"]}
               alt={`${country.name} flag`}
               className="absolute h-full w-full object-cover"
             />
