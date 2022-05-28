@@ -80,10 +80,9 @@ const CountryDetails = () => {
                 <span className="block md:inline mb-2 md:mb-0 md:mr-2 font-semibold">
                   border countries:{" "}
                 </span>
-                {country.borders && country.borders.length ? (
-                  country.borders.map((alphacode) => (
-                    <CountryBorders key={alphacode} alphacode={alphacode} />
-                  ))
+
+                {country.borders ? (
+                  <CountryBorders countryBorders={country.borders} />
                 ) : (
                   <span className="font-light">none</span>
                 )}

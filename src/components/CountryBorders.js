@@ -1,22 +1,29 @@
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
-const CountryBorders = ({ alphacode }) => {
+const CountryBorders = ({ countryBorders }) => {
+  const borders = countryBorders.join(",");
+
   const {
-    data: countryName,
+    data: countries,
     isLoading,
     error,
-  } = useFetch(`https://restcountries.com/v2/alpha/${alphacode}/?fields=name`);
+  } = useFetch(`https://restcountries.com/v2/alpha?codes=${borders}`);
+
+  if (isLoading) return "Loading...";
+  if (error) return "Oops! something went wrong!!!";
 
   return (
-    countryName && (
+    countries &&
+    countries.map((country) => (
       <Link
-        to={`/countries/${countryName.name}`}
+        key={country.name}
+        to={`/countries/${country.name}`}
         className="bg-white dark:bg-blue-light shadow-md font-light inline-block mb-2 mr-2 px-5 rounded-sm"
       >
-        {countryName.name}
+        {country.name}
       </Link>
-    )
+    ))
   );
 };
 
