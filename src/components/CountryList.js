@@ -4,10 +4,11 @@ import NoCountry from "./NoCountry";
 import RenderIfVisible from "react-render-if-visible";
 
 const CountryList = ({ countries, isLoading, error }) => {
-  // When the fetching the data from API is done, loop through the countries and return a list item from CountryCard component
-  const countryList = isLoading ? (
-    <Loader />
-  ) : (
+  if (isLoading) return <Loader />;
+  if (error) return <NoCountry />;
+
+  return (
+    // Display country list
     <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
       {countries.map((country) => (
         <RenderIfVisible defaultHeight={358} key={country.name}>
@@ -15,11 +16,6 @@ const CountryList = ({ countries, isLoading, error }) => {
         </RenderIfVisible>
       ))}
     </ul>
-  );
-
-  return (
-    // Display country list
-    <>{error ? <NoCountry /> : countryList}</>
   );
 };
 
