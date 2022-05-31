@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 import CountryInfo from "./CountryInfo";
-
-const primaryInfos = [
-  { x: "population", y: "population" },
-  { x: "region", y: "region" },
-  { x: "capital", y: "capital" },
-];
+import Info from "../infos.json";
 
 const CountryCard = ({ country }) => {
   return (
@@ -25,8 +20,14 @@ const CountryCard = ({ country }) => {
           <span className="mb-4 font-extrabold text-lg inline-block">
             {country.name}
           </span>
-          {primaryInfos.map((info, index) => (
-            <CountryInfo key={index} x={info.x} y={country[info.y]} />
+          {/* Get the required info from a Json file */}
+          {Info.cardInfos.map((info, index) => (
+            <CountryInfo
+              key={index}
+              title={info.title}
+              property={country[info.property]}
+              subproperty={info.subproperty}
+            />
           ))}
         </div>
       </Link>
