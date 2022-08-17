@@ -113,11 +113,8 @@ The initial score was as follows:
 
 ## Continued development
 
-- List virtualization:
-  I'm really curious to know what goes under the hood of list virtualization libraries. What spurred this curiosity is that when I used RenderIfVisible, it affected the best practice score on Google lighthouse. RenderIfVisible wraps each list item in a div, so it threw off the semantic structure I wrote. If possible, I'd love to contribute to RenderIfVisible so that users can choose what element wraps their list item.
-
 - Git commits:
   I understand the importance of git commits, whether a developer works individually or with a team. I want to write better commit messages, and I think following conventional commit specifications is a good start.
 
 - TailwindCSS:
-  I always aspire to write clean, reusable, and easy-to-read code. As of now, I think there's still some room for me to improve when it comes to styling with TailwindCSS and I want to make that room as small as possible.
+  I always aspire to write clean, reusable, and easy-to-read code. As Tailwind CSS is the only CSS framework I use, I want to get better at it and produce clean, optimized CSS code.
