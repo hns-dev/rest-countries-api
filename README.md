@@ -28,9 +28,11 @@ Users should be able to:
 
 ## Screenshot
 
+![Homepage screenshot](./public/img/original-home-screenshot.jpg)
+
 ## Links
 
-- Live Site URL: [REST Countries API with color theme switcher solution](countries-api-h.vercel.app/)
+- Live Site URL: [REST Countries API with color theme switcher solution](https://countries-api-h.vercel.app/)
 
 # My process
 
@@ -43,7 +45,7 @@ Users should be able to:
 
 ## What I learned
 
-I started this project with two goals: improving my React skill and building performant web app. Hence, I run a Google Lighthouse audit after building the app.
+I started this project with two goals: improving my React skill and building performant web app. So, I run a Google Lighthouse audit after building the app.
 
 The initial score was as follows:
 
@@ -51,10 +53,12 @@ The initial score was as follows:
 
 ![initial performance score on Google Lighthouse is 66%](./public/img/Opportunity-and-Dignostics.png)
 
-### _Problems & Solutions:_
+Here's what I learned and how I increased the performance score by 27%
 
-- Avoid an ecessive DOM size + Minimize main-thread work  
-  The homepage displays a list of 255 countries, which resulted in ecessive DOM size. Google Lighthouse suggested using a 'windowing' library like [react-window](https://github.com/bvaughn/react-window). However, you can't create a responsive grid using this library. So, I searched for alternatives and found [RenderIfVisible](https://github.com/NightCafeStudio/react-render-if-visible) which worked like a charm.
+- **How to render large list effectively**  
+  The homepage of this app displays a list of 255 countries, which resulted in ecessive DOM size and affected the performance score greatly. Google Lighthouse suggested using a 'windowing' library like [react-window](https://github.com/bvaughn/react-window). However, you can't create a responsive grid using this library. So, I searched for alternatives and found [RenderIfVisible](https://github.com/NightCafeStudio/react-render-if-visible) which worked like a charm.
+
+  **Result:**
 
   - Performance score increased by 15%
 
@@ -62,7 +66,7 @@ The initial score was as follows:
 
   ![Google Lighthouse score after using RenderIfVisible](./public/img/Google-Lighthouse-score-after-using-renderIfVisible-details.png)
 
-- Reduce unused JavaScript  
+- **How to reduce unused JavaScript**  
   I setup route-based code splitting using React.lazy, coupled with Suspence component to provide a loading indicator while the component load.
 
   ```JavaScript
@@ -84,6 +88,8 @@ The initial score was as follows:
   </Suspense>
   ```
 
+  **Result:**
+
   - Performance score increased by 12%
   - Speed Index time reduced by 6 seconds
 
@@ -91,8 +97,8 @@ The initial score was as follows:
 
   ![Google Lighthouse score after using React Lazy](./public/img/Google-Lighthouse-score-after-using-react-lazy-details.png)
 
-- Preload Largest Contentful Paint image  
-  To reduce Largest Contentful Paint (LCP) time, I preloaded above-the-fold images.
+- **How to reduce Largest Contentful Paint (LCP) time**  
+  To reduce LCP time, I preloaded above-the-fold images.
 
   ```html
   <!-- Preload above the fold images -->
@@ -101,15 +107,17 @@ The initial score was as follows:
   <link rel="preload" as="image" href="https://restcountries.eu/data/ala.svg" />
   ```
 
+  **Result:**
+
   - Performance score increased by 2%
   - Largest Contentful Paint time reduced by 0.3s
-  - Time to Interactive reduced by 0.1s (I learned that even a split sec makes a difference XD)
+  - Time to Interactive reduced by 0.1s (I learned that even a split sec can make a difference XD)
 
   ![Google Lighthouse score after preloading resources](./public/img/Google-Lighthouse-score-after-preloading-resources.png)
 
   ![Google Lighthouse score after preloading resources](./public/img/Google-Lighthouse-score-after-preloading-resources-details.png)
 
-  Or this is how it was before [restcountries.eu](https://restcountries.eu) shut down suddenly. It seems [restcountries.com](https://restcountries.com) uses a slow server, so the score dropped when I used preloading resources. Once I find a better solution, I'll update this README file.
+  Or this is how it was before I switched from [restcountries.eu](https://restcountries.eu) to [restcountries.com](https://restcountries.com), because the former shut down suddenly. It seems [restcountries.com](https://restcountries.com) uses a slow server, so the score dropped when I used preloading resources. Once I find a better solution, I'll update this part.
 
 ## Continued development
 
