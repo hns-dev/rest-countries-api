@@ -30,7 +30,7 @@ Users should be able to:
 
 ## Links
 
-- Live Site URL: [REST Countries API with color theme switcher solution](countries-api-h.vercel.app/)
+- Live Site URL: [REST Countries API with color theme switcher solution](https://countries-api-h.vercel.app/)
 
 # My process
 
