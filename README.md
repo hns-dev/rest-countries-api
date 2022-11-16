@@ -28,6 +28,8 @@ Users should be able to:
 
 ## Screenshot
 
+![Homepage screenshot](./public/img/original-home-screenshot.jpg)
+
 ## Links
 
 - Live Site URL: [REST Countries API with color theme switcher solution](https://countries-api-h.vercel.app/)
