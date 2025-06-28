@@ -5,7 +5,9 @@ import CountryList from "./CountryList";
 import useFetch from "../hooks/useFetch";
 
 const Home = () => {
-  const [query, setQuery] = useState("all");
+  const [query, setQuery] = useState(
+    "all?fields=name,flags,region,capital,population"
+  );
   const {
     data: countries,
     isLoading,
